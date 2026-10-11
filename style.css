@@ -31,7 +31,7 @@ footer{margin-top:3rem;color:var(--mute);font-size:.9rem}
 .side a{display:block;padding:.55rem .85rem;border-left:4px solid var(--rule);color:var(--ink);text-decoration:none;line-height:1.35}
 .side a:hover{border-left-color:var(--accent)}
 .side a[aria-current]{border-left-color:var(--accent);background:var(--panel);color:var(--accent);font-weight:600}
-.sidelabel{margin:1.2rem 0 .4rem;padding-left:.85rem;color:var(--mute);font-size:.85rem}
+.sidelabel{margin:1.2rem 0 .4rem;padding-left:.85rem;color:var(--mute);font-size:1.4rem}
 .panel{min-width:0}
 .panel:focus{outline:none}
 .panel>h2:first-child{margin-top:0;border-top:0;padding-top:0}
