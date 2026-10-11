@@ -1,24 +1,74 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Soren McMinn Janzen | Mechanical Engineering Portfolio</title><link rel="stylesheet" href="style.css"></head>
-<body><main class="wrap">
+<body><main class="wrap wide">
 <h1>Soren McMinn Janzen</h1>
 <div class="titleblock">
 <div><small>Program</small>UBC Integrated Engineering, Mechanical</div>
-<div><small>Graduation</small>Expected May 2030</div>
-<div class="wide"><small>Looking for</small>Mechanical engineering co-op starting May 2027 (4, 8, or 12 months)</div>
-<div class="wide"><small>Contact</small><a href="mailto:sorenjmj@gmail.com">sorenjmj@gmail.com</a></div>
-</div>
-<h2>About</h2><p>I’m a second-year Integrated Engineering student at the University of British Columbia, specializing in mechanical engineering. I joined the UBC Baja SAE team in September 2025 and work in the chassis group, designing, 3D printing, and fabricating parts for an off-road race car.</p><p>My work on the team includes a lumbar support insert developed through testing with the team’s drivers, a rule-compliant transponder mount, and removable mirror mounts. I’m now developing composite body panels. Much of this work is shaped by practical constraints: Baja SAE rules, a small testing budget, and parts that must be built, fitted to the car, and used by drivers. A course project paired a sheet-metal claw with an Arduino-compatible controller and an ultrasonic sensor to build an autonomous retrieval robot.</p><p>I work in SolidWorks and Fusion 360, hold the CSWA certification, and have experience with waterjet cutting, 3D printing, and chassis fabrication, including frame jigging and tube coping and bending.</p><p>I’ve also worked as an overnight camp counselor and volunteered over 250 hours with youth summer camps. Outside school, I’m adventurous and outdoorsy: I play ultimate frisbee, volleyball, and hockey, and I swim and ski.</p><p>I’m looking for a 4, 8, or 12-month mechanical engineering co-op starting in May 2027.</p><h2>Projects</h2>
-<a class="proj" href="body-panels.html"><strong>Composite body panels</strong><span>In progress. Cockpit-protecting panels with molds and quick-disconnect mounting.</span></a>
-<a class="proj" href="seat-insert.html"><strong>Driver seat lumbar insert</strong><span>A 3D-printed insert, tested with drivers, that fixed back pain in the car’s seat.</span></a>
-<a class="proj" href="mirrors.html"><strong>Removable mirror mounts</strong><span>3D-printed dovetail clamps for blind-spot mirrors.</span></a>
-<a class="proj" href="transponder-mount.html"><strong>Transponder mount and cage</strong><span>A frame-mounted steel tab with a two-piece ABS cage.</span></a>
-<a class="proj" href="robot.html"><strong>Autonomous retrieval robot</strong><span>Course project with sheet-metal construction and sensor-driven control.</span></a>
-<h2>Skills</h2>
+<div class="layout">
+<nav class="side" aria-label="Portfolio sections">
+<ul><li><a href="#about" data-id="about">About</a></li></ul>
+<p class="sidelabel">Projects</p>
+<ul>
+<li><a href="body-panels.html" data-id="body-panels">Composite body panels</a></li>
+<li><a href="seat-insert.html" data-id="seat-insert">Driver seat lumbar insert</a></li>
+<li><a href="mirrors.html" data-id="mirrors">Removable mirror mounts</a></li>
+<li><a href="transponder-mount.html" data-id="transponder-mount">Transponder mount and cage</a></li>
+<li><a href="robot.html" data-id="robot">Autonomous retrieval robot</a></li>
+</ul>
+</nav>
+<div class="panel" id="panel" tabindex="-1">
+<h2>About</h2><p>I’m a second-year Integrated Engineering student at the University of British Columbia, specializing in mechanical engineering. I joined the UBC Baja SAE team in September 2025 and work in the chassis group, designing, 3D printing, and fabricating parts for an off-road race car.</p><p>My work on the team includes a lumbar support insert developed through testing with the team’s drivers, a rule-compliant transponder mount, and removable mirror mounts. I’m now developing composite body panels. Much of this work is shaped by practical constraints: Baja SAE rules, a small testing budget, and parts that must be built, fitted to the car, and used by drivers. A course project paired a sheet-metal claw with an Arduino-compatible controller and an ultrasonic sensor to build an autonomous retrieval robot.</p><p>I work in SolidWorks and Fusion 360, hold the CSWA certification, and have experience with waterjet cutting, 3D printing, and chassis fabrication, including frame jigging and tube coping and bending.</p><p>I’ve also worked as an overnight camp counselor and volunteered over 250 hours with youth summer camps. Outside school, I’m adventurous and outdoorsy: I play ultimate frisbee, volleyball, and hockey, and I swim and ski.</p><p>I’m looking for a 4, 8, or 12-month mechanical engineering co-op starting in May 2027.</p><h2>Skills</h2>
 <ul><li><strong>CAD and simulation:</strong> SolidWorks, Fusion 360, SolidWorks Simulation (FEA fundamentals)</li>
 <li><strong>Fabrication:</strong> waterjet cutting, 3D printing (PETG, ABS), frame jigging, tube coping and bending, hand and power tools</li>
 <li><strong>Electronics and programming:</strong> Arduino-compatible microcontrollers, ESP32, sensor and actuator integration</li>
 <li><strong>Certifications:</strong> CSWA (Certified SOLIDWORKS Associate), Bronze Cross, First Aid and CPR/AED Level C</li></ul>
-<footer>Resume available on request.</footer>
-</main></body></html>
+</div>
+</div>
+</main>
+<script>
+(function () {
+  var panel = document.getElementById('panel');
+  var home = panel.innerHTML;
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side a'));
+
+  function setActive(a) {
+    links.forEach(function (l) { l.removeAttribute('aria-current'); });
+    a.setAttribute('aria-current', 'page');
+  }
+  function reveal() {
+    panel.classList.remove('in'); void panel.offsetWidth; panel.classList.add('in');
+  }
+  function route() {
+    var id = location.hash.slice(1) || 'about';
+    var a = links.filter(function (l) { return l.dataset.id === id; })[0] || links[0];
+    if (a.dataset.id === 'about') { panel.innerHTML = home; setActive(a); reveal(); return; }
+    fetch(a.getAttribute('href'))
+      .then(function (r) { if (!r.ok) throw new Error('x'); return r.text(); })
+      .then(function (t) {
+        var doc = new DOMParser().parseFromString(t, 'text/html');
+        var main = doc.querySelector('main');
+        var back = main.querySelector('.back'); if (back) back.remove();
+        var h1 = main.querySelector('h1');
+        var h2 = document.createElement('h2'); h2.className = 'ptitle'; h2.textContent = h1.textContent; h1.replaceWith(h2);
+        Array.prototype.slice.call(main.querySelectorAll('h2:not(.ptitle)')).forEach(function (h) {
+          var h3 = document.createElement('h3'); h3.innerHTML = h.innerHTML; h.replaceWith(h3);
+        });
+        panel.innerHTML = main.innerHTML; setActive(a); reveal();
+      })
+      .catch(function () { window.location.href = a.getAttribute('href'); });
+  }
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var id = a.dataset.id;
+      if (location.hash.slice(1) === id || (!location.hash && id === 'about')) { route(); } else { location.hash = id; }
+      panel.focus({ preventScroll: true });
+      if (window.innerWidth < 770) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body></html>
