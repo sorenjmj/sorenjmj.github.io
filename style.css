@@ -23,3 +23,27 @@ p,ul{margin:.5rem 0}
 .fig figcaption{color:var(--mute);font-size:.9rem;margin-top:.4rem}
 footer{margin-top:3rem;color:var(--mute);font-size:.9rem}
 @media(max-width:34rem){.titleblock{grid-template-columns:1fr}h1{font-size:1.7rem}}
+
+.wrap.wide{max-width:66rem}
+.layout{display:grid;grid-template-columns:14.5rem minmax(0,1fr);gap:2.5rem;align-items:start}
+.side{position:sticky;top:1rem}
+.side ul{list-style:none;margin:0;padding:0}
+.side a{display:block;padding:.55rem .85rem;border-left:4px solid var(--rule);color:var(--ink);text-decoration:none;line-height:1.35}
+.side a:hover{border-left-color:var(--accent)}
+.side a[aria-current]{border-left-color:var(--accent);background:var(--panel);color:var(--accent);font-weight:600}
+.sidelabel{margin:1.2rem 0 .4rem;padding-left:.85rem;color:var(--mute);font-size:.85rem}
+.panel{min-width:0}
+.panel:focus{outline:none}
+.panel>h2:first-child{margin-top:0;border-top:0;padding-top:0}
+.ptitle{font-size:1.7rem;line-height:1.2;margin:0 0 .2rem;border-top:0;padding-top:0}
+.panel h3{font-size:1.2rem;margin:2.2rem 0 .5rem;padding-top:.9rem;border-top:1px solid var(--rule)}
+@media (prefers-reduced-motion:no-preference){.panel.in{animation:pop .22s ease-out}}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:48rem){
+.layout{grid-template-columns:1fr;gap:1.2rem}
+.side{position:static}
+.side ul{display:flex;flex-wrap:wrap;gap:.4rem}
+.side a{border:1px solid var(--rule);border-radius:.4rem;background:var(--panel)}
+.side a[aria-current]{border-color:var(--accent)}
+.sidelabel{padding-left:0}
+}
