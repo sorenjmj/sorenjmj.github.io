@@ -19,7 +19,7 @@ p,ul{margin:.5rem 0}
 .proj span{color:var(--mute)}
 .status{border-left:4px solid var(--accent);background:var(--panel);padding:.7rem 1rem;margin:1rem 0}
 .fig{margin:1.4rem 0}
-.fig img{display:block;width:100%;height:auto;border:1px solid var(--rule)}
+.fig img{display:block;max-width:100%;max-height:26rem;width:auto;height:auto;border:1px solid var(--rule)}
 .fig figcaption{color:var(--mute);font-size:.9rem;margin-top:.4rem}
 footer{margin-top:3rem;color:var(--mute);font-size:.9rem}
 @media(max-width:34rem){.titleblock{grid-template-columns:1fr}h1{font-size:1.7rem}}
